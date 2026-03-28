@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SkyPulse — Compare Cities</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body class="app-page">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand"><i class="fa-solid fa-cloud-sun-rain"></i><span>SkyPulse</span></div>
+    <nav class="sidebar-nav">
+      <a href="dashboard.html" class="nav-link"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+      <a href="map.html" class="nav-link"><i class="fa-solid fa-map-location-dot"></i> Weather Map</a>
+      <a href="history.html" class="nav-link"><i class="fa-solid fa-clock-rotate-left"></i> Search History</a>
+      <a href="compare.html" class="nav-link active"><i class="fa-solid fa-code-compare"></i> Compare Cities</a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-badge" id="sidebarUser"></div>
+      <button class="btn-logout" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <button class="hamburger" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
+      <h2 class="page-title">Compare Cities</h2>
+      <div class="topbar-right">
+        <div class="avatar" id="topbarAvatar"></div>
+      </div>
+    </header>
+
+    <section class="compare-section">
+      <div class="compare-inputs">
+        <div class="compare-input-wrap">
+          <label>City 1</label>
+          <div class="input-group">
+            <i class="fa-solid fa-city"></i>
+            <input type="text" id="compareCity1" placeholder="e.g. London" onkeydown="if(event.key==='Enter') compareCities()"/>
+          </div>
+        </div>
+        <div class="vs-badge">VS</div>
+        <div class="compare-input-wrap">
+          <label>City 2</label>
+          <div class="input-group">
+            <i class="fa-solid fa-city"></i>
+            <input type="text" id="compareCity2" placeholder="e.g. Paris" onkeydown="if(event.key==='Enter') compareCities()"/>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="compareCities()"><i class="fa-solid fa-magnifying-glass"></i> Compare</button>
+      </div>
+
+      <div class="compare-loading hidden" id="compareLoading">
+        <div class="loader-ring"></div><p>Fetching data...</p>
+      </div>
+
+      <div class="compare-results hidden" id="compareResults">
+        <div class="compare-cards" id="compareCards"></div>
+        <div class="card compare-table-card">
+          <h3 class="card-title"><i class="fa-solid fa-table"></i> Side-by-Side Comparison</h3>
+          <div class="compare-table-wrap" id="compareTable"></div>
+        </div>
+      </div>
+
+      <div class="empty-state" id="compareEmpty">
+        <i class="fa-solid fa-code-compare"></i>
+        <p>Enter two cities to compare their weather.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="auth.js"></script>
+  <script src="compare.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SkyPulse — Weather Map</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <style>
+    #mapContainer { height: calc(100vh - 80px); width: 100%; border-radius: 16px; overflow: hidden; }
+    .leaflet-container { background: #1a1f2e; }
+  </style>
+</head>
+<body class="app-page">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand"><i class="fa-solid fa-cloud-sun-rain"></i><span>SkyPulse</span></div>
+    <nav class="sidebar-nav">
+      <a href="dashboard.html" class="nav-link"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+      <a href="map.html" class="nav-link active"><i class="fa-solid fa-map-location-dot"></i> Weather Map</a>
+      <a href="history.html" class="nav-link"><i class="fa-solid fa-clock-rotate-left"></i> Search History</a>
+      <a href="compare.html" class="nav-link"><i class="fa-solid fa-code-compare"></i> Compare Cities</a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-badge" id="sidebarUser"></div>
+      <button class="btn-logout" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <button class="hamburger" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
+      <h2 class="page-title">Weather Map</h2>
+      <div class="topbar-right">
+        <select id="mapLayer" onchange="changeMapLayer()" class="map-layer-select">
+          <option value="temp_new">Temperature</option>
+          <option value="precipitation_new">Precipitation</option>
+          <option value="clouds_new">Cloud Cover</option>
+          <option value="wind_new">Wind Speed</option>
+        </select>
+        <div class="avatar" id="topbarAvatar"></div>
+      </div>
+    </header>
+    <div id="mapContainer"></div>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="auth.js"></script>
+  <script src="map.js"></script>
+</body>
+</html>
